@@ -13,19 +13,30 @@ public class Contador {
 
         terminal.close();
 
-        contar(parametroUm, parametroDois);
+        System.out.println("---------------------------------------------------------");
+
+        try {
+
+            contar(parametroUm, parametroDois);
+        } catch (ParametrosInvalidoException exception) {
+            System.err.println("O segundo parâmetro deve ser MAIOR que o primeiro.");
+        }
 
     }
 
-    static void contar(int parametroUm, int parametroDois) {
-        if (parametroUm < parametroDois) {
-            int contagem = parametroDois - parametroUm;
+    public static void contar(int parametroUm, int parametroDois) throws ParametrosInvalidoException {
 
-            for (int i = 1; i <= contagem; i++) {
-                System.out.println(i);
-            }
-        } else {
-            System.out.println("Parametros invalidos");
+        if (parametroUm > parametroDois) {
+            throw new ParametrosInvalidoException("O segundo parâmetro deve ser MAIOR que o primeiro.");
         }
+
+        System.out.println("Iniciando contagem: ");
+
+        int contagem = parametroDois - parametroUm;
+
+        for (int i = 1; i <= contagem; i++) {
+            System.out.println(i);
+        }
+
     }
 }
